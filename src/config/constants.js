@@ -20,4 +20,12 @@ export const ENDPOINTS = {
   RECIPES: {
     GENERATE: RECIPES_URL + '/recipes',
   },
+
+  SETTINGS: {
+    CHANGE_PASSWORD: USER_URL + '/change-password ',
+    REQUEST_2FA: USER_URL + '/request-2fa',
+    ENABLE_2FA: USER_URL + '/enable-2fa',
+    DISABLE_2FA: USER_URL + '/disable-2fa',
+  },
+
 };
