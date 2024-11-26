@@ -11,6 +11,8 @@ import ForgotPassword from './User/Auth/ForgotPassword';
 import ResetPassword from './User/Auth/ResetPassword';
 import Profile from './User/Profile';
 import Recipes from './Recipes';
+import RecipeList from './RecipeList';
+
 
 function AppRoutes() {
   const { user } = useUser();
@@ -27,6 +29,8 @@ function AppRoutes() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/recipes" element={<Recipes />} />
+      <Route path="/recipe-list" element={<RecipeList />} />
+
 
       {/* Private routes for authenticated users */}
       <Route element={<PrivateRoute />}>

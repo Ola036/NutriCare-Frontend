@@ -47,18 +47,19 @@ export default function Home() {
   };
 
   return (
+     <div style={{    
+      minHeight: '100vh',
+      backgroundImage: `url('/Image/background.svg')`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      color: 'white',
+      textAlign: 'center',
+      padding: '2rem',
+    }}>
+
     <Container
       className="d-flex flex-column align-items-center justify-content-center"
-      style={{
-        minHeight: '100vh',
-        backgroundImage: `url('/Image/background.svg')`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        color: 'white',
-        textAlign: 'center',
-        padding: '2rem',
-      }}
     >
 
       {/* Welcome Section */}
@@ -66,7 +67,7 @@ export default function Home() {
         <h1 className="display-4" style={{ color: 'white', fontWeight: 'bold' }}>
           Welcome, {user?.name}!
         </h1>
-        <p style={{ color: 'white', fontSize: '18px', fontWeight: '500' }}>
+        <p style={{ color: 'white', fontSize: '20px', fontWeight: '500' }}>
           Generate your personalized recipe now.
         </p>
       </div>
@@ -132,5 +133,6 @@ export default function Home() {
           </Col>
         </Row>
       </Container>
+    </div>
   );
 }

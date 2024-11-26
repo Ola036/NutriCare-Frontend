@@ -28,7 +28,9 @@ export default function Navigation() {
           <Nav className="ms-auto">
             {user ? (
               <>
-                <Nav.Link as={Link} to="/recipes">Recipes</Nav.Link>
+                {/* Updated Recipe List Link */}
+                <Nav.Link as={Link} to="/recipe-list">Recipe List</Nav.Link>
+
                 <NavDropdown title={user.name} id="basic-nav-dropdown">
                   <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
                   <NavDropdown.Divider />
