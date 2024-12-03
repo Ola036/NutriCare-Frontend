@@ -33,7 +33,7 @@ function AppRoutes() {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/recipes" element={<Recipes />} />
       <Route path="/recipe-list" element={<RecipeList />} />
-      <Route path="/change-password" element={<ChangePassword />} />>
+      <Route path="/change-password" element={<ChangePassword />} />
       <Route path="/2fa/request" element={<Request2FA />} />
       <Route path="/2fa/confirm" element={<Verify2FA />} />
 
