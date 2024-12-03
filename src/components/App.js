@@ -12,6 +12,9 @@ import ResetPassword from './User/Auth/ResetPassword';
 import Profile from './User/Profile';
 import Recipes from './Recipes';
 import RecipeList from './RecipeList';
+import ChangePassword from './User/ChangePassword';  // Import the ChangePassword component
+import Request2FA from './User/Request2FA';  // Import the Request2FA component
+import Verify2FA from './User/Auth/Verify2FA';  
 
 
 function AppRoutes() {
@@ -30,6 +33,11 @@ function AppRoutes() {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/recipes" element={<Recipes />} />
       <Route path="/recipe-list" element={<RecipeList />} />
+      <Route path="/change-password" element={<ChangePassword />} />>
+      <Route path="/2fa/request" element={<Request2FA />} />
+      <Route path="/2fa/confirm" element={<Verify2FA />} />
+
+      
 
 
       {/* Private routes for authenticated users */}

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { Container, Form, Button, Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom'; // For navigation
 import { useUser } from '../../contexts/UserContext';
 import api from '../../services/api';
 import { ENDPOINTS } from '../../config/constants';
 
 export default function Profile() {
   const { user, login } = useUser();
+  const navigate = useNavigate(); // Use navigate for routing
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [hasTwoFA, setHasTwoFA] = useState('');
   const [healthConditions, setHealthConditions] = useState([]);
   const [dietaryPreferences, setDietaryPreferences] = useState([]);
   const [availableHealth, setAvailableHealth] = useState([]);
@@ -17,6 +19,19 @@ export default function Profile() {
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  const handleDisable2FA = () => {
+    api({
+      url: ENDPOINTS.USER.DISABLE_2FA,
+      method: 'POST',
+      onSuccess: () => {
+        setHasTwoFA(false);
+      },
+      onError: (error) => {
+        setErrorMessage('Failed to disable 2FA.');
+      }
+    });
+  };
 
   // Fetch user profile and available options on component mount
   useEffect(() => {
@@ -29,6 +44,7 @@ export default function Profile() {
         setEmail(data.email);
         setHealthConditions(data.health_conditions || []);
         setDietaryPreferences(data.dietary_preferences || []);
+        setHasTwoFA(data.has_TwoFA);
       },
       onError: () => {
         setErrorMessage('Failed to load user information.');
@@ -57,7 +73,6 @@ export default function Profile() {
     const updatedData = {
       name,
       email,
-      password: password || undefined, // Only send if not empty
       health_conditions: healthConditions,
       dietary_preferences: dietaryPreferences,
     };
@@ -69,7 +84,6 @@ export default function Profile() {
       onSuccess: (data) => {
         setSuccessMessage('Profile updated successfully!');
         login(data.user, localStorage.getItem('token')); // Update user context
-        setPassword(''); // Clear password field after saving
       },
       onError: (error) => {
         setErrorMessage(error.message || 'Failed to update profile.');
@@ -115,15 +129,6 @@ export default function Profile() {
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Enter new password (leave blank to keep current)"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
               <Form.Label>Health Conditions</Form.Label>
               <Select
                 isMulti
@@ -148,7 +153,30 @@ export default function Profile() {
                 style={{ backgroundColor: 'black', border: 'none', marginRight: '10px' }}
               >
                 {loading ? 'Saving...' : 'Save Changes'}
+
               </Button>
+              <Button
+                onClick={() => navigate('/change-password')}
+                style={{ backgroundColor: 'black', border: 'none', marginLeft: '10px' }}
+              >
+                Change Password
+
+              </Button>
+              {
+                !hasTwoFA ?
+                  <Button
+                    onClick={() => navigate('/2fa/request')}
+                    style={{ backgroundColor: 'black', border: 'none', marginLeft: '10px' }}
+                  >
+                    Enable 2FA
+                  </Button> :
+                  <Button
+                    onClick={() => handleDisable2FA()}
+                    style={{ backgroundColor: 'black', border: 'none', marginLeft: '10px' }}
+                  >
+                    Disable 2FA
+                  </Button>
+              }
             </div>
           </Form>
         </Card.Body>

@@ -11,9 +11,11 @@ export default function Login() {
 
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const [show2FA, setShow2FA] = useState(false);
+  // const [code, setCode] = useState('');
+  // const [twoFaKey, setTwoFaKey] = useState('');
 
   async function submit(e) {
     e.preventDefault();
@@ -31,7 +33,12 @@ export default function Login() {
       onSuccess: (data, toast) => {
         login(data.user, data.token);
         toast.success('Logged in successfully!');
-        navigate('/');
+
+        if (data.user.has_TwoFA) {
+          navigate('/2fa/confirm');
+        } else {
+          navigate('/');
+        }
       },
       onError: (errors) => {
         setErrors(errors);
@@ -41,6 +48,38 @@ export default function Login() {
       },
     });
   }
+
+  // async function confirm2FA(e) {
+  //   e.preventDefault();
+
+  //   setLoading(true);
+
+  //   api({
+  //     url: ENDPOINTS.USER.Verify_2FA,
+  //     method: 'POST',
+  //     body: {
+  //       key: twoFaKey,
+  //       code,
+  //     },
+  //     onSuccess: (data, toast) => {
+  //       login(data.user, data.token);
+  //       toast.success('2FA verified! Logged in successfully!');
+
+  //       console.log(data.user.has_TwoFA);
+  //       if(data.user.has_TwoFA) {
+  //         navigate('/2fa/verify');
+  //       } else {
+  //         navigate('/');
+  //       }
+  //     },
+  //     onError: (errors) => {
+  //       setErrors({ twofa: 'Invalid 2FA code. Please try again.' });
+  //     },
+  //     onEnd: () => {
+  //       setLoading(false);
+  //     },
+  //   });
+  // }
 
   return (
     <div style={{

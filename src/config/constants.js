@@ -12,20 +12,23 @@ export const ENDPOINTS = {
       REGISTER: USER_URL + '/register',
       FORGOT_PASSWORD: USER_URL + '/forgot',
       RESET_PASSWORD: USER_URL + '/reset',
+      VERIFY_2FA: USER_URL + '/2FA/confirm',
     },
+
+    CHANGE_PASSWORD: USER_URL + '/change-password',
     PROFILE: USER_URL + '/profile',
     DATA: USER_URL + '/data',
-    SETTINGS: USER_URL + '/settings',
+    REQUEST_2FA: USER_URL + '/2FA/request',
+    ENABLE_2FA: USER_URL + '/2FA/enable',
+    DISABLE_2FA: USER_URL + '/2FA/disable',
+    
+    
   },
+
   RECIPES: {
     GENERATE: RECIPES_URL + '/recipes',
   },
 
-  SETTINGS: {
-    CHANGE_PASSWORD: USER_URL + '/change-password ',
-    REQUEST_2FA: USER_URL + '/request-2fa',
-    ENABLE_2FA: USER_URL + '/enable-2fa',
-    DISABLE_2FA: USER_URL + '/disable-2fa',
-  },
+ 
 
 };
