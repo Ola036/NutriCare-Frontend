@@ -33,16 +33,17 @@ const Verify2FA = () => {
             textAlign: 'center',
             padding: '2rem',
         }}>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
             <div style={{ textAlign: 'center' }}>
-                <h3 className="display-4" style={{ color: 'Black', fontWeight: 'bold' }}>Verify Two-Factor Authentication (2FA)</h3>
+                <h3 className="display-4" style={{ color: 'Black', fontWeight: 'bold', marginBottom: '1rem' }}>Verify Two-Factor Authentication (2FA)</h3>
                 <input
                     type="text"
                     placeholder="Enter the code"
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
+                    style={{ marginBottom: '5rem' }}
                 />
-                <button onClick={() => handleVerify2FA()}>Verify 2FA</button>
+                <button onClick={() => handleVerify2FA()} style={{ marginBottom: '5rem' }}>Verify 2FA</button>
                 {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             </div>
         </div>
