@@ -113,7 +113,7 @@ export default function RecipeList() {
                                         style={{
                                             cursor: 'pointer',
                                             fontSize: '1.5rem',
-                                            color: recipe.favorite ? '#FF0000' : '#fff',
+                                            color: '#ffffff',
                                         }}
                                         onClick={() => toggleFavorite(recipe)}
                                     >
