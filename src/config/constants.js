@@ -10,6 +10,7 @@ export const ENDPOINTS = {
       LOGIN: USER_URL + '/login',
       LOGOUT: USER_URL + '/logout',
       REGISTER: USER_URL + '/register',
+      VERIFY: USER_URL + '/verify',
       FORGOT_PASSWORD: USER_URL + '/forgot',
       RESET_PASSWORD: USER_URL + '/reset',
       VERIFY_2FA: USER_URL + '/2FA/confirm',

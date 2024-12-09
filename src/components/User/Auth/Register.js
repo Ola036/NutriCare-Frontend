@@ -36,7 +36,7 @@ export default function Login() {
         onSuccess: (data, toast) => {
           login(data.user, data.token);
           toast.success('Registered successfully!');
-          navigate('/');
+          navigate('/verify');
         },
         onError: (errors) => {
           setErrors(errors);

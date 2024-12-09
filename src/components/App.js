@@ -15,13 +15,14 @@ import RecipeList from './RecipeList';
 import ChangePassword from './User/ChangePassword';  // Import the ChangePassword component
 import Request2FA from './User/Request2FA';  // Import the Request2FA component
 import Verify2FA from './User/Auth/Verify2FA';
+import Verify from './User/Auth/Verify';
 
 function AppRoutes() {
   const { user } = useUser();
   const location = useLocation();
 
   // Don't render Navigation on /2fa/confirm page
-  const hideNavigation = location.pathname === '/2fa/confirm';
+  const hideNavigation = ['/2fa/confirm', '/verify'].includes(location.pathname);
 
   return (
     <>
@@ -34,6 +35,7 @@ function AppRoutes() {
         />
         <Route path="/login" element={user ? <Navigate to="/home" replace /> : <Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify" element={<Verify />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/recipes" element={<Recipes />} />
